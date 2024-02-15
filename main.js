@@ -100,7 +100,9 @@ function sendMessage(username, userQuestion, userAgent, callback) {
             console.error('❌ Error making request:', error.message);
         } else {
             console.log(`-> Successfully sent message '${options.form.question}' with deviceId '${options.form.deviceId}' to ${options.form.username}`);
-            callback(); // Invoke the callback to track successful messages
+            if (callback && typeof callback === 'function') {
+                callback(); // Invoke the callback to track successful messages
+            }
         }
     });
 }
