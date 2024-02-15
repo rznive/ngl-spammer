@@ -1,6 +1,6 @@
-var fs = require('fs');
-var request = require('request');
-var readline = require('readline');
+const fs = require('fs');
+const request = require('request');
+const readline = require('readline');
 
 var listUUID;
 try {
@@ -30,6 +30,7 @@ console.log('🚀 Welcome to NGL Spammer Tools 🚀');
 console.log('Choose an option:');
 console.log('1 - Message with JKT48 Jiko');
 console.log('2 - Input message');
+console.log('3 - Template Menyala Abangkuh');
 
 rl.question('👉 Enter the option number: ', function (option) {
     if (option === '1') {
@@ -46,9 +47,8 @@ rl.question('👉 Enter the option number: ', function (option) {
                 });
             });
         });
-    } else {
-        console.error('❌ Invalid option. Please choose either 1 or 2.');
-        process.exit(1);
+    } else if (option === '3') {
+        sendAbangkuhMessage();
     }
 });
 
@@ -107,6 +107,29 @@ function sendMessage(username, userQuestion, userAgent, callback) {
     });
 }
 
+function sendAbangkuhMessage() {
+    rl.question('👤 Input username: ', function (username) {
+        rl.question('🔢 Input how many you want to send? ', function (jumlahPesan) {
+            jumlahPesan = parseInt(jumlahPesan);
+
+            var successCount = 0;
+
+            function sendSuccessMessage() {
+                successCount++;
+                if (successCount === jumlahPesan) {
+                    console.log('-> All messages sent successfully!');
+                    askToUseAgain();
+                }
+            }
+
+            for (var i = 0; i < jumlahPesan; i++) {
+                var abangkuhQuote = listAbangkuh[Math.floor(Math.random() * listAbangkuh.length)];
+                setTimeout(sendMessage, i * 3000, username, abangkuhQuote, getRandomUserAgent(), sendSuccessMessage);
+            }
+        });
+    });
+}
+
 function askToUseAgain() {
     rl.question('🔄 Do you want to use this tool again? (yes/no): ', function (answer) {
         if (answer.toLowerCase() === 'yes') {
@@ -116,11 +139,11 @@ function askToUseAgain() {
             console.log('Choose an option:');
             console.log('1 - Message with JKT48 Jiko');
             console.log('2 - Input message');
+            console.log('3 - Template Menyala Abangkuh');
             rl.question('👉 Enter the option number: ', function (option) {
                 if (option === '1') {
                     sendJikoMessage();
                 } else if (option === '2') {
-                    // Add logic for input message
                     rl.question('👤 Input username: ', function (username) {
                         rl.question('💬 Input message: ', function (userQuestion) {
                             rl.question('🔢 Input how many you want to send? ', function (jumlahPesan) {
@@ -132,9 +155,8 @@ function askToUseAgain() {
                             });
                         });
                     });
-                } else {
-                    console.error('❌ Invalid option. Exiting.');
-                    process.exit(1);
+                } else if (option === '3') {
+                 sendAbangkuhMessage();
                 }
             });
         } else {
@@ -147,6 +169,82 @@ function askToUseAgain() {
 function getRandomUserAgent() {
     return userAgentOptions[Math.floor(Math.random() * userAgentOptions.length)];
 }
+
+const listAbangkuh = [
+    "kijang 1, ganti 🦌",
+    "kasih paham queen 🤭🔥 MENYALA",
+    "jangan kasih kendor ee 🕺🏻🕺🏻",
+    "kasih tebal king 🤙🤙",
+    "izin abangkuu 🔥",
+    "jagoan mama muncul 🔥🔥🔥",
+    "kasih paham queen, ilmu baddie 🔥🔥💅💅",
+    "giling terus boss 💪",
+    "capt idolaa 🔥🙌🏼🔝",
+    "manyala panutan abangda 🔥🔥",
+    "kasih apa? kasih paham abangkuhh👊👊👊🔥🔥🔥🔥",
+    "weees kelas abangku 🔥🔥",
+    "top abangku 👍🏼👍🏼",
+    "kasi paham wakk 🔥🔥🔥",
+    "tetep ilmu padi 🌾🌾",
+    "isinya daging semua abangkuu🔥🔥🔛🔝",
+    "🔛🔝 selalu idola 🔥",
+    "eitsss pondasi bangsa abangkuuhh 🔥🔝🙌🏼",
+    "mahkota sedang transit di dc cakung kingg 🔥👑🙇‍♂️",
+    "abang idola panutan ini 😘😘",
+    "manyala ilmu padi 🌾🔥",
+    "kasih jedag jedug dulu abangkuh🤩🥵",
+    "ini mahkotamu king 👑",
+    "top selalu idola 🔥",
+    "kalau diatas jgn lupa merunduk 🌾🙌🏼🙇‍♂️",
+    "mantap kali bahh 🔥🔥",
+    "sesekali 🙌🏼",
+    "top 🔝",
+    "beraksi🍻🍻",
+    "menyala abangkuhh 🔥🔥🔥",
+    "kelas boskuuuh 🔥👍🏼",
+    "makasih sharingnya abangkuhh, tetaplah ilmu padi 🌾🙇‍♂️🌾🔝🔝🔝",
+    "tetap ilmu oriza sativa 🌾",
+    "kasih paham tipis tipis 🤝🏼",
+    "starboy vibez🥵😎🥀💥🐙",
+    "eihhh mantaapp pedii kaliii 🔥🔥🔥",
+    "wanita mana yang berani menyakitimu king 💯💯💪❤‍🔥",
+    "kelas abangkuu 🔥🔝",
+    "sehat selalu kaka panutan 💪💪🫡",
+    "gas kanda 🔥🔥",
+    "percaya proses capt 🔥🔥",
+    "idola 🙌🏼🙌🏼",
+    "eh yg punya setengah indo nih ee 😜😜",
+    "kasih paham capt 🔥💯🙌🏼",
+    "percaya proses king 💯💯💪❤‍🔥",
+    "tetap membumi abangkuh 🔥🙌🏼🌎",
+    "kasih keras abangkuhh 🔥👊🏼",
+    "manyala capt 🔥🔥",
+    "terstill💪💪",
+    "bertahap abangkuuuu🔥🤙🪜👟",
+    "gokil capt kaki tiga🦵🔥🔥",
+    "kasih keras idola 🔥🔥",
+    "jangan kasi longgar king 🔝💯🔥🙌🏼",
+    "tipis tipis 🔥🔛🔝",
+    "nikmati proses kakandaaa🤙🔥🙇‍♂️",
+    "trcium aroma ilmu padi abangkuh🔥🔥🌾🌾",
+    "sungkem dulu abangkuuu🙇‍♂️🙇‍♂️",
+    "biarkan abangku memasakkk🔥🔥🧑‍🍳🧑‍🍳",
+    "kasih tahu abangkuuu🔥🔥🙇‍♂️🙇‍♂️",
+    "meroket abangku 🚀🚀🚀",
+    "ilmu padi abangkuhh🌾🌾👊🏻💥🔥",
+    "kelas banget kanda 🙏🏼🕺🏻",
+    "rispeekk 👍🏼🙌🏼",
+    "jangan kasih kendor king 🔥🔥🔥",
+    "panutan 🔝✊🏼🙌🏼",
+    "bercahaya abangkuhh 🔥💡💡",
+    "masih memantau 🔭🔭🔭",
+    "mahkotamu masih dilas, king 👑",
+    "terbaik kandaku 🙌🏼",
+    "tipis tipis asal menyala king 👑🔥",
+    "kelas abangda 🔥🫡",
+    "apotik tutup captain 🔥🔥💯🔝",
+    "lanjutkan abangkuuhh 🔥🔝💥"
+];
 
 const list_jiko = [
     "Papipapipu aku akan mengejutkanmu dengan kehebatan ku",
