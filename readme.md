@@ -14,6 +14,6 @@ Fiture custom Input message:
 Input username: Enter the target username for sending messages.
 Input message: Input a custom message to be sent.
 Input how many you want to send: Specify the number of messages to be sent.
-<br
+<br>
 <br>
 Fiture send Message with template menyala Abangkuh
